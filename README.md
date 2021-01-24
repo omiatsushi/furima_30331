@@ -1,24 +1,59 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## usersテーブル
+|colum               |Type            |option                |
+|------------------------------------------------------------|
+|nickname            |string          |null: false           |
+|email               |string          |null: false           |
+|password            |string          |null: false           |
+|birthday            |string          |null: false           |
 
-Things you may want to cover:
+## Association
+- has_many :items
+- has_many :buyer
 
-* Ruby version
+## itemsテーブル
+|colum               |Type            |option                |
+|------------------------------------------------------------|
+|name                |string          |null: false           |
+|explanation         |string          |null: false           |
+|category            |string          |null: false           |
+|state               |string          |null: false           |
+|delivery fee        |text            |null: false           |
+|shopping address    |string          |null: false           |
+|shopping day        |string          |null: false           |
 
-* System dependencies
+## Association
+- belongs_to :users
+- has_many :buyer
 
-* Configuration
+## buyerテーブル
+|colum               |Type            |option                |
+|------------------------------------------------------------|
+|users               |references      |                      |
+|items               |references      |                      |
 
-* Database creation
+## Association
+- belongs_to :users
+- belongs_to :items
 
-* Database initialization
+## informationテーブル
+|colum               |Type            |option                |
+|------------------------------------------------------------|
+|card number         |string          |null: false           |
+|expiration date     |string          |null: false           |
+|security code       |string          |null: false           |
+|address number      |string          |null: false           |
+|prefectures         |string          |null: false           |
+|city                |string          |null: false           |
+|address             |string          |null: false           |
+|phone number        |string          |null: false           |
 
-* How to run the test suite
+## Association
+- belongs_to :buyer
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
 
-* ...
+
+
+
