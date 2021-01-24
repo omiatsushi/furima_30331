@@ -3,14 +3,17 @@
 ## usersテーブル
 |colum               |Type            |option                |
 |------------------------------------------------------------|
-|nickname            |string          |null: false           |
+|first_name          |string          |null: false           |
+|second_name         |string          |null: false           |
+|first_name_furigana |string          |null: false           |
+|second_name_furigana|string          |null: false           |
 |email               |string          |null: false           |
-|password            |string          |null: false           |
-|birthday            |string          |null: false           |
+|encrypted_password  |string          |null: false           |
+|birthday            |date            |null: false           |
 
 ## Association
 - has_many :items
-- has_many :buyer
+- has_many :buyers
 
 ## itemsテーブル
 |colum               |Type            |option                |
@@ -18,16 +21,16 @@
 |name                |string          |null: false           |
 |explanation         |string          |null: false           |
 |category            |string          |null: false           |
-|state               |string          |null: false           |
-|delivery fee        |text            |null: false           |
-|shopping address    |string          |null: false           |
-|shopping day        |string          |null: false           |
+|state_id            |integer         |null: false           |
+|delivery_fee_id     |integer         |null: false           |
+|shopping_address_id |integer         |null: false           |
+|shopping_day_id     |integer         |null: false           |
 
 ## Association
 - belongs_to :users
-- has_many :buyer
+- has_one :buyer
 
-## buyerテーブル
+## buyersテーブル
 |colum               |Type            |option                |
 |------------------------------------------------------------|
 |users               |references      |                      |
@@ -37,17 +40,14 @@
 - belongs_to :users
 - belongs_to :items
 
-## informationテーブル
+## informationsテーブル
 |colum               |Type            |option                |
 |------------------------------------------------------------|
-|card number         |string          |null: false           |
-|expiration date     |string          |null: false           |
-|security code       |string          |null: false           |
-|address number      |string          |null: false           |
-|prefectures         |string          |null: false           |
+|address_number      |string          |null: false           |
+|shopping_address_id |integer         |null: false           |
 |city                |string          |null: false           |
 |address             |string          |null: false           |
-|phone number        |string          |null: false           |
+|phone_number        |string          |null: false           |
 
 ## Association
 - belongs_to :buyer
