@@ -26,22 +26,22 @@
 |delivery_fee_id     |integer         |null: false           |
 |shopping_address_id |integer         |null: false           |
 |shopping_day_id     |integer         |null: false           |
-|users               |references      |                      |
+|user                |references      |                      |
 
 ## Association
-- belongs_to :users
+- belongs_to :user
 - has_one :buyer
 
 ## buyersテーブル
 |colum               |Type            |option                |
 |------------------------------------------------------------|
-|users               |references      |                      |
-|items               |references      |                      |
+|user                |references      |                      |
+|item                |references      |                      |
 
 ## Association
-- belongs_to :users
-- belongs_to :items
-- belongs_to :informations
+- belongs_to :user
+- belongs_to :item
+- belongs_to :information
 
 ## informationsテーブル
 |colum               |Type            |option                |
@@ -52,6 +52,7 @@
 |city                |string          |null: false           |
 |address             |string          |null: false           |
 |phone_number        |string          |null: false           |
+|buyer               |references      |                      |
 
 ## Association
 - belongs_to :buyer
