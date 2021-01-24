@@ -26,7 +26,7 @@
 |delivery_fee_id     |integer         |null: false           |
 |shopping_address_id |integer         |null: false           |
 |shopping_day_id     |integer         |null: false           |
-|user                |references      |                      |
+|user                |references      |foreign_key: true     |
 
 ## Association
 - belongs_to :user
@@ -35,13 +35,13 @@
 ## buyersテーブル
 |colum               |Type            |option                |
 |------------------------------------------------------------|
-|user                |references      |                      |
-|item                |references      |                      |
+|user                |references      |foreign_key: true     |
+|item                |references      |foreign_key: true     |
 
 ## Association
 - belongs_to :user
 - belongs_to :item
-- belongs_to :information
+- has_one :information
 
 ## informationsテーブル
 |colum               |Type            |option                |
@@ -52,7 +52,7 @@
 |city                |string          |null: false           |
 |address             |string          |null: false           |
 |phone_number        |string          |null: false           |
-|buyer               |references      |                      |
+|buyer_id            |integer         |null: false           |
 
 ## Association
 - belongs_to :buyer
