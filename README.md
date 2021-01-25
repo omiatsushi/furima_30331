@@ -26,6 +26,7 @@
 |delivery_fee_id     |integer         |null: false           |
 |shopping_address_id |integer         |null: false           |
 |shopping_day_id     |integer         |null: false           |
+|price               |string          |null: false           |
 |user                |references      |foreign_key: true     |
 
 ## Association
@@ -52,7 +53,7 @@
 |city                |string          |null: false           |
 |address             |string          |null: false           |
 |phone_number        |string          |null: false           |
-|buyer_id            |integer         |null: false           |
+|buyer_id            |integer         |foreign_key: true     |
 
 ## Association
 - belongs_to :buyer
