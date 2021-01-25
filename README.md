@@ -26,7 +26,7 @@
 |delivery_fee_id     |integer         |null: false           |
 |shopping_address_id |integer         |null: false           |
 |shopping_day_id     |integer         |null: false           |
-|price               |string          |null: false           |
+|price               |integer         |null: false           |
 |user                |references      |foreign_key: true     |
 
 ## Association
