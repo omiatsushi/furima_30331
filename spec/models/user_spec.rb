@@ -5,11 +5,14 @@ RSpec.describe User, type: :model do
     @user = FactoryBot.build(:user)
 end
 
-describe 'ユーザー新規登録' do
+context 'ユーザー新規登録できる時' do
+ describe 'ユーザー新規登録' do
   it "必要事項が入力されていれば新規登録できる" do
     expect(@user).to be_valid
   end
+end
 
+context 'ユーザー新規登録できない時' do
   it "nicknameが空の場合登録できない" do
     @user.nickname = nil
     @user.valid?
@@ -40,6 +43,18 @@ describe 'ユーザー新規登録' do
     expect(@user.errors.full_messages).to include("Second name can't be blank")
   end
 
+  it "first_nameは全角かな以外が入力されると登録できない" do
+    @user.first_name = "aaaa"
+    @user.valid?
+    expect(@user.errors.full_messages).to include("First name is invalid")
+  end
+
+  it "second_nameは全角かな以外が入力されると登録できない" do
+    @user.second_name = "aaaa"
+    @user.valid?
+    expect(@user.errors.full_messages).to include("Second name is invalid")
+  end
+
   it "first_name_furiganaが空の場合登録できない" do
     @user.first_name_furigana = nil
     @user.valid?
@@ -50,6 +65,18 @@ describe 'ユーザー新規登録' do
     @user.second_name_furigana = nil
     @user.valid?
     expect(@user.errors.full_messages).to include("Second name furigana can't be blank")
+  end
+
+  it "first_name_furiganaは全角カナ以外が入力されると登録できない" do
+    @user.first_name_furigana = "aaaa"
+    @user.valid?
+    expect(@user.errors.full_messages).to include("First name furigana is invalid")
+  end
+
+  it "second_name_furiganaは全角カナ以外が入力されると登録できない" do
+    @user.second_name_furigana = "aaaa"
+    @user.valid?
+    expect(@user.errors.full_messages).to include("Second name furigana is invalid")
   end
 
   it "birthdayが空の場合登録できない" do
@@ -93,5 +120,6 @@ describe 'ユーザー新規登録' do
     expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
   end
 
+end
 end
 end
