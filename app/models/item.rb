@@ -18,6 +18,11 @@ class Item < ApplicationRecord
 
   belongs_to :user
   belongs_to :delivery_fee
+  belongs_to :category
+  belongs_to :shopping_address
+  belongs_to :shopping_day
+  belongs_to :state
+  belongs_to :order
   has_one :buyer
   has_one_attached :image
 end
