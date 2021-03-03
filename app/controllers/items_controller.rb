@@ -26,10 +26,4 @@ class ItemsController < ApplicationController
                                  :shopping_day_id, :price).merge(user_id: current_user.id)
   end
 
-  # def get_deliveryfee
-    # fees = ['---', '着払い(購入者負担)', '送料込み(出品者負担)']
-    # d_fees = fees[@fee_num]
-    # delivery_fee.push(fees)
-  # end
-
 end
