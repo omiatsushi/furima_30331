@@ -4,6 +4,7 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.order('created_at DESC')
+    # get_deliveryfee
   end
 
   def new
@@ -25,5 +26,11 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:image, :name, :explanation, :category_id, :state_id, :delivery_fee_id, :shopping_address_id,
                                  :shopping_day_id, :price).merge(user_id: current_user.id)
   end
+
+  # def get_deliveryfee
+    # fees = ['---', '着払い(購入者負担)', '送料込み(出品者負担)']
+    # d_fees = fees[@fee_num]
+    # delivery_fee.push(fees)
+  # end
 
 end
