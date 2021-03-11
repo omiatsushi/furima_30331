@@ -57,6 +57,16 @@ RSpec.describe OrderInfomation, type: :model do
           @order.valid?
           expect(@order.errors.full_messages).to include("Shopping address must be other than 0")
         end
+        it 'user_idが空の場合登録できない' do
+          @order.user_id = ''
+          @order.valid?
+          expect(@order.errors.full_messages).to include("User can't be blank")
+        end
+        it 'item_idが空の場合登録できない' do
+          @order.item_id = ''
+          @order.valid?
+          expect(@order.errors.full_messages).to include("Item can't be blank")
+        end
 
         
       end
