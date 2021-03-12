@@ -2,7 +2,14 @@ require 'rails_helper'
 
 RSpec.describe OrderInfomation, type: :model do
   before do
+    user = FactoryBot.create(:user)
+    item = FactoryBot.build(:item)
+    item.image = fixture_file_upload('app/assets/images/flag.png')
+    item.save
     @order = FactoryBot.build(:order_infomation)
+    @order.item_id = item.id
+    @order.user_id = user.id
+    sleep(1)
   end
   
   describe '商品注文情報の登録' do
@@ -52,6 +59,16 @@ RSpec.describe OrderInfomation, type: :model do
           @order.valid?
           expect(@order.errors.full_messages).to include("Phone number is invalid")
         end
+        it '電話番号が12桁以上の場合登録できない' do
+          @order.phone_number = '090111111111'
+          @order.valid?
+          expect(@order.errors.full_messages).to include("Phone number is invalid")
+        end
+        it '電話番号が英数混合の場合登録できない' do
+          @order.phone_number = '090abcd1234'
+          @order.valid?
+          expect(@order.errors.full_messages).to include("Phone number is invalid")
+        end
         it '都道府県を選択していない登録できない' do
           @order.shopping_address_id = 0
           @order.valid?
@@ -66,6 +83,11 @@ RSpec.describe OrderInfomation, type: :model do
           @order.item_id = ''
           @order.valid?
           expect(@order.errors.full_messages).to include("Item can't be blank")
+        end
+        it 'tokenが空の場合登録できない' do
+          @order.token = ''
+          @order.valid?
+          expect(@order.errors.full_messages).to include("Token can't be blank")
         end
 
         
