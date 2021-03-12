@@ -14,7 +14,7 @@
 
 ## Association
 - has_many :items
-- has_many :buyers
+- has_many :orders
 
 ## itemsテーブル
 |colum               |Type            |option                |
@@ -31,9 +31,9 @@
 
 ## Association
 - belongs_to :user
-- has_one :buyer
+- has_one :orders
 
-## buyersテーブル
+## ordersテーブル
 |colum               |Type            |option                |
 |------------------------------------------------------------|
 |user                |references      |foreign_key: true     |
@@ -56,7 +56,7 @@
 |buyer_id            |integer         |foreign_key: true     |
 
 ## Association
-- belongs_to :buyer
+- belongs_to :order
 
 
 
